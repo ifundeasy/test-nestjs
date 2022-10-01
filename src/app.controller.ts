@@ -1,10 +1,14 @@
-import { Get, Req, Request, UseGuards, Controller } from '@nestjs/common';
+import { Get, Controller, UseGuards, Req, Request } from '@nestjs/common';
 import { AppService } from './app.service';
 import { JwtAuthGuard } from './auth';
+import { UserService } from './user';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly appService: AppService,
+  ) {}
 
   @Get()
   getHello(): string {
@@ -14,6 +18,7 @@ export class AppController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Req() req: Request) {
-    return (req as any).user;
+    const { user } = req as any;
+    return this.userService.get({ username: user.username });
   }
 }
