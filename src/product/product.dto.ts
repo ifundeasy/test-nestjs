@@ -4,6 +4,10 @@ import { PartialType } from '@nestjs/mapped-types';
 class BaseDTO {
   @IsString()
   @IsNotEmpty()
+  readonly code: string;
+
+  @IsString()
+  @IsNotEmpty()
   readonly name: string;
 
   @IsNumber()
@@ -18,11 +22,11 @@ class BaseDTO {
 export class ProductDTO extends BaseDTO {
   @IsDate()
   @IsNotEmpty()
-  readonly createdAt: boolean;
+  readonly createdAt: Date;
 
   @IsDate()
   @IsNotEmpty()
-  readonly updatedAt: boolean;
+  readonly updatedAt: Date;
 }
 
 export class ProductCreateDTO extends BaseDTO {}

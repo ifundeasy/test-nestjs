@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -22,46 +22,30 @@ export class SoldProductService {
     return newSoldProduct.save();
   }
 
-  async updateSoldProduct(
-    soldProductId: string,
-    updateSoldProductDto: SoldProductUpdateDTO,
+  async updateProduct(
+    query: object,
+    updateProductDto: SoldProductUpdateDTO,
   ): Promise<ISoldProduct> {
-    const existingSoldProduct = await this.soldProductModel.findByIdAndUpdate(
-      soldProductId,
-      updateSoldProductDto,
+    const existingProduct = await this.soldProductModel.findOneAndUpdate(
+      query,
+      updateProductDto,
       { new: true },
     );
-    if (!existingSoldProduct) {
-      throw new NotFoundException(`SoldProduct #${soldProductId} not found`);
-    }
-    return existingSoldProduct;
+    return existingProduct;
   }
 
-  async getAllSoldProducts(): Promise<ISoldProduct[]> {
-    const soldProductData = await this.soldProductModel.find();
-    if (!soldProductData || soldProductData.length == 0) {
-      throw new NotFoundException('SoldProducts data not found!');
-    }
-    return soldProductData;
+  async getAllProducts(): Promise<ISoldProduct[]> {
+    const productData = await this.soldProductModel.find();
+    return productData;
   }
 
-  async getSoldProduct(soldProductId: string): Promise<ISoldProduct> {
-    const existingSoldProduct = await this.soldProductModel
-      .findById(soldProductId)
-      .exec();
-    if (!existingSoldProduct) {
-      throw new NotFoundException(`SoldProduct #${soldProductId} not found`);
-    }
-    return existingSoldProduct;
+  async getProduct(query: object): Promise<ISoldProduct> {
+    const existingProduct = await this.soldProductModel.findOne(query).exec();
+    return existingProduct;
   }
 
-  async deleteSoldProduct(soldProductId: string): Promise<ISoldProduct> {
-    const deletedSoldProduct = await this.soldProductModel.findByIdAndDelete(
-      soldProductId,
-    );
-    if (!deletedSoldProduct) {
-      throw new NotFoundException(`SoldProduct #${soldProductId} not found`);
-    }
-    return deletedSoldProduct;
+  async deleteProduct(query: object): Promise<ISoldProduct> {
+    const deletedProduct = await this.soldProductModel.findOneAndUpdate(query);
+    return deletedProduct;
   }
 }

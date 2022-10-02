@@ -1,25 +1,38 @@
-import { IsNotEmpty, IsArray, IsDate, IsObject, IsEnum } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsArray,
+  IsDate,
+  IsObject,
+  IsEnum,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 import { ProductDTO } from '../product';
 import { UserDTO } from '../user';
 import { WarrantyClaimStatus } from './sold-product.schema';
+import { Type } from 'class-transformer';
 
 export class WarrantyClaimDTO {
   @IsEnum(WarrantyClaimStatus)
   @IsNotEmpty()
-  readonly status: string;
+  status: WarrantyClaimStatus;
 
   @IsDate()
   @IsNotEmpty()
-  readonly createdAt: boolean;
+  createdAt: Date;
 
   @IsDate()
   @IsNotEmpty()
-  readonly updatedAt: boolean;
+  updatedAt: Date;
 }
 
 class BaseDTO {
+  @IsString()
+  @IsNotEmpty()
+  readonly saleId: string;
+
   @IsObject()
   @IsNotEmpty()
   readonly product: ProductDTO;
@@ -29,17 +42,19 @@ class BaseDTO {
   readonly buyer: UserDTO;
 
   @IsArray()
-  readonly warrantyClaims: [WarrantyClaimDTO];
+  @ValidateNested({ each: true })
+  @Type(() => WarrantyClaimDTO)
+  readonly warrantyClaims: WarrantyClaimDTO[];
 }
 
 export class SoldProductDTO extends BaseDTO {
   @IsDate()
   @IsNotEmpty()
-  readonly createdAt: boolean;
+  readonly createdAt: Date;
 
   @IsDate()
   @IsNotEmpty()
-  readonly updatedAt: boolean;
+  readonly updatedAt: Date;
 }
 
 export class SoldProductCreateDTO extends BaseDTO {}

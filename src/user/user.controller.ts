@@ -1,4 +1,3 @@
-import * as bcrypt from 'bcrypt';
 import { Post, Body, Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 import { IUser } from './user.interface';
@@ -14,12 +13,10 @@ export class UserController {
     @Body('password') password: string,
     @Body('isAdmin') isAdmin: boolean,
   ): Promise<IUser> {
-    const saltOrRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltOrRounds);
     const result = await this.userService.create({
       name,
       username,
-      password: hashedPassword,
+      password,
       isAdmin,
     });
     return result;

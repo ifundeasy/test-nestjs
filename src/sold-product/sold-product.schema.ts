@@ -7,6 +7,7 @@ export enum WarrantyClaimStatus {
   Pending,
   Accepted,
   Refused,
+  Delivered,
 }
 
 @Schema()
@@ -29,6 +30,9 @@ export const WarrantyClaimSchema = SchemaFactory.createForClass(WarrantyClaim);
 
 @Schema()
 export class SoldProduct {
+  @Prop({ unique: true, index: true, required: true })
+  saleId: string;
+
   @Prop({ type: ProductSchema, required: true })
   product: Product;
 

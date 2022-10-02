@@ -10,6 +10,7 @@ export interface IWarrantyClaim extends Document {
 }
 
 export interface ISoldProduct extends Document {
+  readonly saleId: string;
   readonly product: IProduct;
   readonly buyer: IUser;
   readonly warrantyClaims: IWarrantyClaim[];

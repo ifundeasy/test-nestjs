@@ -28,11 +28,11 @@ export class UserLoginDTO {
 export class UserDTO extends BaseDTO {
   @IsDate()
   @IsNotEmpty()
-  readonly createdAt: boolean;
+  readonly createdAt: Date;
 
   @IsDate()
   @IsNotEmpty()
-  readonly updatedAt: boolean;
+  readonly updatedAt: Date;
 }
 
 export class UserCreateDTO extends BaseDTO {
