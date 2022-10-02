@@ -16,13 +16,13 @@ async function bootstrap() {
 
   // * Swagger initialization
   const config = new DocumentBuilder()
-    .setTitle('Claim System: OpenAPI')
-    .setDescription('The cats API description')
+    .setTitle('Warranty: OpenAPI')
+    .setDescription('The Warranty API description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('root')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document);
 
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);

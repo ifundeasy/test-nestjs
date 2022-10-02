@@ -73,8 +73,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](LICENSE).
 
 ## Todo
-- Unit testing
+- Implementation of: product, sold-product include warranty
 - Dockerfile & docker-compose
 - Swagger properties
 - Session model
-- Module of: product, sold-product include warranty
+- Unit testing

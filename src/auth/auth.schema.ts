@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { now } from 'mongoose';
-import { UserSchema } from '../user';
+import { User, UserSchema } from '../user';
 
 @Schema()
 export class Session {
@@ -11,7 +11,7 @@ export class Session {
   expiresAt: Date;
 
   @Prop({ type: UserSchema, required: true })
-  user: typeof UserSchema;
+  user: User;
 
   @Prop({ default: now() })
   createdAt: Date;
