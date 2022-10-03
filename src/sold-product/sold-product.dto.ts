@@ -22,10 +22,6 @@ export class WarrantyClaimDTO {
   @IsDate()
   @IsNotEmpty()
   createdAt: Date;
-
-  @IsDate()
-  @IsNotEmpty()
-  updatedAt: Date;
 }
 
 class BaseDTO {
@@ -45,6 +41,10 @@ class BaseDTO {
   @ValidateNested({ each: true })
   @Type(() => WarrantyClaimDTO)
   readonly warrantyClaims: WarrantyClaimDTO[];
+
+  @IsDate()
+  @IsNotEmpty()
+  readonly buyTimestamp: Date;
 }
 
 export class SoldProductDTO extends BaseDTO {

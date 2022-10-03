@@ -65,7 +65,7 @@ export class AppModule implements OnApplicationBootstrap {
     const soldProductService = this.soldProductService;
     return await Promise.all(
       defaultSoldProducts.map((sold) => {
-        return soldProductService.getProduct(sold.query).then((data) => {
+        return soldProductService.getSoldProduct(sold.query).then((data) => {
           if (!data) {
             return soldProductService.createSoldProduct(sold.payload as any);
           }

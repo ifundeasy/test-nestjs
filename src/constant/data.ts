@@ -110,6 +110,7 @@ const SoldProducts = [
       saleId: 's001',
       product: Products[0].payload,
       buyer: Users[1].payload,
+      buyTimestamp: oneDayAgo,
     },
   },
   {
@@ -122,14 +123,13 @@ const SoldProducts = [
         {
           status: WarrantyClaimStatus.Pending,
           createdAt: zeroDayAgo,
-          updatedAt: zeroDayAgo,
         },
         {
           status: WarrantyClaimStatus.Accepted,
           createdAt: now,
-          updatedAt: now,
         },
       ],
+      buyTimestamp: oneDayAgo,
     },
   },
   {
@@ -142,14 +142,13 @@ const SoldProducts = [
         {
           status: WarrantyClaimStatus.Pending,
           createdAt: zeroDayAgo,
-          updatedAt: zeroDayAgo,
         },
         {
           status: WarrantyClaimStatus.Refused,
           createdAt: now,
-          updatedAt: now,
         },
       ],
+      buyTimestamp: oneDayAgo,
     },
   },
   {
@@ -162,19 +161,17 @@ const SoldProducts = [
         {
           status: WarrantyClaimStatus.Pending,
           createdAt: zeroDayAgo,
-          updatedAt: zeroDayAgo,
         },
         {
           status: WarrantyClaimStatus.Accepted,
           createdAt: zeroDayAgo,
-          updatedAt: zeroDayAgo,
         },
         {
           status: WarrantyClaimStatus.Delivered,
           createdAt: now,
-          updatedAt: now,
         },
       ],
+      buyTimestamp: oneDayAgo,
     },
   },
   {
@@ -183,6 +180,34 @@ const SoldProducts = [
       saleId: 's005',
       product: Products[3].payload,
       buyer: Users[1].payload,
+      buyTimestamp: oneDayAgo,
+    },
+  },
+  {
+    query: { saleId: 's006' },
+    payload: {
+      saleId: 's006',
+      product: Products[3].payload,
+      buyer: Users[0].payload,
+      buyTimestamp: oneDayAgo,
+    },
+  },
+  {
+    query: { saleId: 's007' },
+    payload: {
+      saleId: 's007',
+      product: Products[0].payload,
+      buyer: Users[2].payload,
+      buyTimestamp: oneDayAgo,
+    },
+  },
+  {
+    query: { saleId: 's008' },
+    payload: {
+      saleId: 's008',
+      product: Products[1].payload,
+      buyer: Users[2].payload,
+      buyTimestamp: oneDayAgo,
     },
   },
 ];

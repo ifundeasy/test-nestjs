@@ -18,7 +18,11 @@ export class UserService {
     return newUser as IUser;
   }
 
-  async get(query: object): Promise<IUserWithPassword> {
+  async getCredential(query: object): Promise<IUserWithPassword> {
+    return this.userModel.findOne(query);
+  }
+
+  async get(query: object): Promise<IUser> {
     return this.userModel.findOne(query);
   }
 }

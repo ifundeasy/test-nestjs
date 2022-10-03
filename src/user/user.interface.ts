@@ -9,5 +9,5 @@ export interface IUser extends Document {
 }
 
 export interface IUserWithPassword extends IUser {
-  readonly password: string;
+  password: string;
 }

@@ -29,8 +29,8 @@ export class ProductService {
     return existingProduct;
   }
 
-  async getAllProducts(): Promise<IProduct[]> {
-    const productData = await this.productModel.find();
+  async getAllProducts(query: object): Promise<IProduct[]> {
+    const productData = await this.productModel.find(query);
     return productData;
   }
 

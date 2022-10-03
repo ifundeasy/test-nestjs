@@ -22,7 +22,7 @@ export class SoldProductService {
     return newSoldProduct.save();
   }
 
-  async updateProduct(
+  async updateSoldProduct(
     query: object,
     updateProductDto: SoldProductUpdateDTO,
   ): Promise<ISoldProduct> {
@@ -34,17 +34,17 @@ export class SoldProductService {
     return existingProduct;
   }
 
-  async getAllProducts(): Promise<ISoldProduct[]> {
-    const productData = await this.soldProductModel.find();
+  async getAllSoldProducts(query: object): Promise<ISoldProduct[]> {
+    const productData = await this.soldProductModel.find(query);
     return productData;
   }
 
-  async getProduct(query: object): Promise<ISoldProduct> {
+  async getSoldProduct(query: object): Promise<ISoldProduct> {
     const existingProduct = await this.soldProductModel.findOne(query).exec();
     return existingProduct;
   }
 
-  async deleteProduct(query: object): Promise<ISoldProduct> {
+  async deleteSoldProduct(query: object): Promise<ISoldProduct> {
     const deletedProduct = await this.soldProductModel.findOneAndUpdate(query);
     return deletedProduct;
   }

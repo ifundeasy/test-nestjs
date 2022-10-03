@@ -6,7 +6,6 @@ import { WarrantyClaimStatus } from './sold-product.schema';
 export interface IWarrantyClaim extends Document {
   readonly status: WarrantyClaimStatus;
   readonly createdAt: Date;
-  readonly updatedAt: Date;
 }
 
 export interface ISoldProduct extends Document {
@@ -14,6 +13,7 @@ export interface ISoldProduct extends Document {
   readonly product: IProduct;
   readonly buyer: IUser;
   readonly warrantyClaims: IWarrantyClaim[];
+  readonly buyTimestamp: Date;
   readonly createdAt: Date;
   readonly updatedAt: Date;
 }

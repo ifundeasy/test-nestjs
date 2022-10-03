@@ -21,9 +21,6 @@ export class WarrantyClaim {
 
   @Prop({ default: now() })
   createdAt: Date;
-
-  @Prop({ default: now() })
-  updatedAt: Date;
 }
 
 export const WarrantyClaimSchema = SchemaFactory.createForClass(WarrantyClaim);
@@ -41,6 +38,9 @@ export class SoldProduct {
 
   @Prop({ type: [WarrantyClaimSchema] })
   warrantyClaims: WarrantyClaim[];
+
+  @Prop({ required: true })
+  buyTimestamp: Date;
 
   @Prop({ default: now() })
   createdAt: Date;
