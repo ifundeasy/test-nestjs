@@ -1,0 +1,23 @@
+version: '3.2'
+services:
+  mongo:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  
+  be-nestjs:
+    image: be-nestjs
+    deploy:
+      replicas: 1
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: 'development'
+      MONGO_URI: 'mongodb://root:root@host.docker.internal:27017/warranty-system?authSource=admin&appName=warranty-system'
+      SYMMETRIC_KEY: 'blahblah'
+    
+volumes:
+  data:
