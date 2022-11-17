@@ -6,6 +6,8 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth';
 import { UserModule, UserService } from './user';
 import { ProductModule, ProductService } from './product';
+import { DatabaseModule, databaseProviders } from './database';
+import { CatModule, CatService } from './cat';
 import { SoldProductModule, SoldProductService } from './sold-product';
 import { ConstantModule, ConstantService } from './constant';
 
@@ -19,6 +21,8 @@ import { ConstantModule, ConstantService } from './constant';
     AuthModule,
     UserModule,
     ProductModule,
+    DatabaseModule,
+    CatModule,
     SoldProductModule,
   ],
   controllers: [AppController],
@@ -29,6 +33,7 @@ export class AppModule implements OnApplicationBootstrap {
     private readonly constantService: ConstantService,
     private readonly userService: UserService,
     private readonly productService: ProductService,
+    // private readonly catService: CatService,
     private readonly soldProductService: SoldProductService,
   ) {
     this.onApplicationBootstrap.bind(this);
